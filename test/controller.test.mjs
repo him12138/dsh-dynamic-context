@@ -100,7 +100,7 @@ const SEAL = {
 }
 
 test('插件入口：name/inject 与注册项齐全（3 段/1 上下文/5 工具/1 命令）', () => {
-  assert.equal(name, 'dsh-memory')
+  assert.equal(name, 'dsh-dynamic-context')
   assert.deepEqual(inject, ['systemPrompt', 'tools', 'commands', 'sessionQuery'])
   const { state, cwd } = newWorkspace()
   try {

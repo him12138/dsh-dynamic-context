@@ -1,5 +1,5 @@
 /**
- * dsh-memory 固定记忆文档（人设）校验（纯函数：无 IO、无 DSH 依赖）。
+ * dsh-dynamic-context 固定记忆文档（人设）校验（纯函数：无 IO、无 DSH 依赖）。
  *
  * 设计依据：tech-design-dsh-memory.md §7.5 第 2–3 步、
  *           requirements-dsh-memory-v0.2.md §6.1（总长上限 3000 字 + 自包含）。

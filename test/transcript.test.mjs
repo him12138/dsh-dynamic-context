@@ -1,5 +1,5 @@
 /**
- * dsh-memory transcript（原话读取/渲染/分片）单测。
+ * dsh-dynamic-context transcript（原话读取/渲染/分片）单测。
  *
  * 测编译产物 `../lib/transcript.js`；覆盖 `.notes/CONTRACTS.md` 第 4 节列出的
  * transcript 用例：区间过滤、四类事件渲染、截断、未知 data 回退、单条坏数据跳过、

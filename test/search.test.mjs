@@ -1,5 +1,5 @@
 /**
- * dsh-memory search.ts 单元测试（node:test，测编译产物 ../lib/search.js）。
+ * dsh-dynamic-context search.ts 单元测试（node:test，测编译产物 ../lib/search.js）。
  *
  * 契约：.notes/CONTRACTS.md §1 + §4（测试要求）。
  */

@@ -1,5 +1,5 @@
 /**
- * dsh-memory persona.ts 单元测试（node:test，测编译产物 ../lib/persona.js）。
+ * dsh-dynamic-context persona.ts 单元测试（node:test，测编译产物 ../lib/persona.js）。
  *
  * 契约：.notes/CONTRACTS.md §2 + §4（测试要求）。
  */

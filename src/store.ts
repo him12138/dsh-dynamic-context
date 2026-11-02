@@ -180,7 +180,7 @@ export class ProjectStore {
       try {
         writeFileSync(this.paths.gitignore, '*\n!.gitignore\n', 'utf8')
       } catch (error) {
-        this.logger?.warn?.(`[dsh-memory] 创建 memory/.gitignore 失败：${String(error)}`)
+        this.logger?.warn?.(`[dsh-dynamic-context] 创建 memory/.gitignore 失败：${String(error)}`)
       }
     }
   }
@@ -205,7 +205,7 @@ export class ProjectStore {
       try {
         text = readFileSync(this.paths.persona, 'utf8')
       } catch (error) {
-        this.logger?.warn?.(`[dsh-memory] 读取 memory/persona.md 失败：${String(error)}`)
+        this.logger?.warn?.(`[dsh-dynamic-context] 读取 memory/persona.md 失败：${String(error)}`)
         text = null
       }
     }
@@ -266,10 +266,10 @@ export class ProjectStore {
       this.diskCorrupt = true
       const backup = this.readCardsText(this.paths.cardsBackup)
       if (backup !== undefined) {
-        this.logger?.warn?.('[dsh-memory] memory/cards.json 解析失败，已回退到 memory/cards.json.bak')
+        this.logger?.warn?.('[dsh-dynamic-context] memory/cards.json 解析失败，已回退到 memory/cards.json.bak')
         file = backup
       } else {
-        this.logger?.warn?.('[dsh-memory] memory/cards.json 与备份均不可读，已以空记忆库继续（坏文件将被隔离）')
+        this.logger?.warn?.('[dsh-dynamic-context] memory/cards.json 与备份均不可读，已以空记忆库继续（坏文件将被隔离）')
         this.quarantineCorruptCards()
         file = emptyCardsFile()
       }
@@ -284,7 +284,7 @@ export class ProjectStore {
     try {
       renameSync(this.paths.cards, `${this.paths.cards}.corrupt-${Date.now()}`)
     } catch (error) {
-      this.logger?.warn?.(`[dsh-memory] 隔离损坏的 memory/cards.json 失败：${String(error)}`)
+      this.logger?.warn?.(`[dsh-dynamic-context] 隔离损坏的 memory/cards.json 失败：${String(error)}`)
     }
   }
 
@@ -303,7 +303,7 @@ export class ProjectStore {
       try {
         copyFileSync(this.paths.cards, this.paths.cardsBackup)
       } catch (error) {
-        this.logger?.warn?.(`[dsh-memory] 备份 memory/cards.json 失败（继续写入）：${String(error)}`)
+        this.logger?.warn?.(`[dsh-dynamic-context] 备份 memory/cards.json 失败（继续写入）：${String(error)}`)
       }
     }
     this.atomicWrite(this.paths.cards, text)

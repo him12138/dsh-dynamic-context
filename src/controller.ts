@@ -104,7 +104,7 @@ export class Controller {
       if (cwd === undefined) return ''
       return renderPersonaSection(this.storeFor(cwd).readPersonaCached(), this.config)
     } catch (error) {
-      this.logWarn(`[dsh-memory] 人设段渲染失败：${errorText(error)}`)
+      this.logWarn(`[dsh-dynamic-context] 人设段渲染失败：${errorText(error)}`)
       return ''
     }
   }
@@ -114,7 +114,7 @@ export class Controller {
     try {
       return renderGuideSection(this.config)
     } catch (error) {
-      this.logWarn(`[dsh-memory] 规则段渲染失败：${errorText(error)}`)
+      this.logWarn(`[dsh-dynamic-context] 规则段渲染失败：${errorText(error)}`)
       return ''
     }
   }
@@ -130,7 +130,7 @@ export class Controller {
       const personaMissing = store.readPersonaCached() === null
       return renderIndex(store.listCards(), this.config, { pendingEnd, personaMissing })
     } catch (error) {
-      this.logWarn(`[dsh-memory] 索引渲染失败：${errorText(error)}`)
+      this.logWarn(`[dsh-dynamic-context] 索引渲染失败：${errorText(error)}`)
       return ''
     }
   }
@@ -269,7 +269,7 @@ export class Controller {
       const previousLength = previous === null ? 0 : countChars(previous)
       const written = store.writePersona(rawContent)
       this.logger?.info?.(
-        `[dsh-memory] 人设已更新（${written.length} 字${typeof reason === 'string' && reason.trim() !== '' ? `；原因：${reason.trim()}` : ''}）`,
+        `[dsh-dynamic-context] 人设已更新（${written.length} 字${typeof reason === 'string' && reason.trim() !== '' ? `；原因：${reason.trim()}` : ''}）`,
       )
       const backupNote = written.backedUp ? '，已备份旧版本' : ''
       let text = `已更新人设文档（${written.length} 字${backupNote}）。下一轮对话生效。`

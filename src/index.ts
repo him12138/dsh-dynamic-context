@@ -1,5 +1,5 @@
 /**
- * dsh-memory 插件入口（技术设计 §3、§19.2）。
+ * dsh-dynamic-context 插件入口（技术设计 §3、§19.2）。
  *
  * Host-only 单包插件：
  * - 固定记忆 → systemPrompt.section（order 100，每请求重新渲染，改文件下一轮生效）
@@ -18,7 +18,7 @@ import type { PluginContextLike } from './platform.js'
 import { errorText } from './util.js'
 
 /** Cordis 插件名（与 package.json 的 name 一致）。 */
-export const name = 'dsh-memory'
+export const name = 'dsh-dynamic-context'
 
 /** 依赖服务；缺失时插件不会激活（sessionQuery 在 base 默认挂载）。 */
 export const inject = ['systemPrompt', 'tools', 'commands', 'sessionQuery']
@@ -61,7 +61,7 @@ export function apply(ctx: PluginContextLike, rawConfig?: unknown): void {
       }),
     )
   } catch (error) {
-    warn(`[dsh-memory] 注册固定记忆段失败：${errorText(error)}`)
+    warn(`[dsh-dynamic-context] 注册固定记忆段失败：${errorText(error)}`)
   }
 
   try {
@@ -74,7 +74,7 @@ export function apply(ctx: PluginContextLike, rawConfig?: unknown): void {
       }),
     )
   } catch (error) {
-    warn(`[dsh-memory] 注册常驻索引失败：${errorText(error)}`)
+    warn(`[dsh-dynamic-context] 注册常驻索引失败：${errorText(error)}`)
   }
 
   try {
@@ -87,21 +87,21 @@ export function apply(ctx: PluginContextLike, rawConfig?: unknown): void {
       }),
     )
   } catch (error) {
-    warn(`[dsh-memory] 注册行为规则段失败：${errorText(error)}`)
+    warn(`[dsh-dynamic-context] 注册行为规则段失败：${errorText(error)}`)
   }
 
   for (const tool of buildMemoryTools(controller)) {
     try {
       add(ctx.tools.register(tool))
     } catch (error) {
-      warn(`[dsh-memory] 注册工具 ${tool.name} 失败：${errorText(error)}`)
+      warn(`[dsh-dynamic-context] 注册工具 ${tool.name} 失败：${errorText(error)}`)
     }
   }
 
   try {
     add(registerMemoryCommand(ctx, controller))
   } catch (error) {
-    warn(`[dsh-memory] 注册 /memory 命令失败：${errorText(error)}`)
+    warn(`[dsh-dynamic-context] 注册 /memory 命令失败：${errorText(error)}`)
   }
 
   const cleanup = (): void => {
@@ -119,6 +119,6 @@ export function apply(ctx: PluginContextLike, rawConfig?: unknown): void {
     const off = ctx.on?.('dispose', cleanup)
     if (typeof off === 'function') disposers.push(off)
   } catch (error) {
-    warn(`[dsh-memory] 注册 dispose 清理失败：${errorText(error)}`)
+    warn(`[dsh-dynamic-context] 注册 dispose 清理失败：${errorText(error)}`)
   }
 }

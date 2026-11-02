@@ -1,5 +1,5 @@
 /**
- * dsh-memory 检索评分（纯函数：同步、确定性、无 LLM、无 IO、无 DSH 依赖）。
+ * dsh-dynamic-context 检索评分（纯函数：同步、确定性、无 LLM、无 IO、无 DSH 依赖）。
  *
  * 设计依据：tech-design-dsh-memory.md §9（检索算法）、
  *           requirements-dsh-memory-v0.2.md §6.4（检索）。
